@@ -1,0 +1,13 @@
+<template name="planetLinedCatalog">
+	<ul class="planetLinedCatalog linedCatalog">
+		{{#if Template.subscriptionsReady}}
+			{{#each items}}
+				<li class="film item">
+					<a href="{{pathFor 'planet' itemId=this._id}}">{{name}}</a>
+				</li>
+			{{/each}}
+		{{else}}
+			Loading...
+		{{/if}}
+	</ul>
+</template>

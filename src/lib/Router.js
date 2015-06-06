@@ -26,3 +26,8 @@ Router.route('/starships/:itemId', {
 	name: "starship",
 	controller: 'StarshipController'
 });
+
+Router.route('/planets/:itemId', {
+	name: "planet",
+	controller: 'PlanetController'
+});

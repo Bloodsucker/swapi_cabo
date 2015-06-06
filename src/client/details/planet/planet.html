@@ -1,0 +1,14 @@
+<template name="planetDetail">
+	<div id="planetDetail" class="detail">
+		<section class="details">
+			<ul class="list-group">
+				<li class="list-group-item"><h2>{{name}}</h2></li>
+				<li class="list-group-item">Diameter: {{diameter}}</li>
+			</ul>
+		</section>
+		<section class="listCatalogs">
+			<h3>Films</h3>
+			{{> filmLinedCatalog films}}
+		</section>
+	</div>
+</template>

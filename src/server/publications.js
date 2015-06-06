@@ -66,3 +66,16 @@ Meteor.publish('starship', function (filmId) {
 
 	self.ready();
 });
+
+Meteor.publish('planet', function (filmId) {
+	var self = this;
+
+	var url = SWAPI.baseUrl + SWAPI.planets + filmId + '?' + SWAPI.format;
+
+	var item = HTTP.get(url).data;
+
+	var itemId = Fetcher.getId(item.url);
+	self.added('planets', itemId, item);
+
+	self.ready();
+});

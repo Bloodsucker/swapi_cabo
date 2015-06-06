@@ -7,5 +7,6 @@ SWAPI = {
 	species: "species/",
 	vehicles: "vehicles/",
 	starships: "starships/",
+	planets: "planets/",
 	format: "format=json"
 };
