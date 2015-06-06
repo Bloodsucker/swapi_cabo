@@ -2,7 +2,7 @@ FilmController = RouteController.extend({
 	layoutTemplate: 'detailLayout',
 	template: 'filmDetail',
 	waitOn: function() {
-		var itemId = parseInt(this.params.filmId);
+		var itemId = parseInt(this.params.itemId);
 		var s = Meteor.subscribe('film', itemId);
 
 		if (!Film.findOne(itemId)) {
@@ -10,7 +10,7 @@ FilmController = RouteController.extend({
 		}
 	},
 	data: function() {
-		var itemId = parseInt(this.params.filmId);
+		var itemId = parseInt(this.params.itemId);
 		return Film.findOne(itemId);
 	}
 });
