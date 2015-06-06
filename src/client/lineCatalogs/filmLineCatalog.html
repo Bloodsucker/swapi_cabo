@@ -1,0 +1,11 @@
+<template name="filmLineCatalog">
+	<ul class="filmCatalog">
+		{{#if Template.subscriptionsReady}}
+			{{#each films}}
+				<li class="film">{{title}}</li>
+			{{/each}}
+		{{else}}
+			Loading...
+		{{/if}}
+	</ul>
+</template>

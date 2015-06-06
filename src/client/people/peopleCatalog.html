@@ -1,9 +1,11 @@
 <template name="peopleCatalog">
 	<section id="catalogs">
 		<ul class="people">
-		{{#each results}}
-			<li class="person">{{name}}</li>
-		{{/each}}
+			{{#each this}}
+				<li class="person">
+					<a href="{{pathFor 'person' personId=this._id }}">{{name}}</a>
+				</li>
+			{{/each}}
 		</ul>
 
 		{{#unless thereIsNextPage}}
