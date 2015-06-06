@@ -1,0 +1,14 @@
+.linedCatalog {
+	display: flex;
+
+	margin: 0;
+	padding: 0;
+
+	.item {
+		display: block;
+		list-style: none;
+
+		height: 150px;
+		width: 150px;
+	}
+}

@@ -1,8 +1,8 @@
 <template name="filmLineCatalog">
-	<ul class="filmCatalog">
+	<ul class="filmCatalog linedCatalog">
 		{{#if Template.subscriptionsReady}}
 			{{#each films}}
-				<li class="film">{{title}}</li>
+				<li class="film item">{{title}}</li>
 			{{/each}}
 		{{else}}
 			Loading...

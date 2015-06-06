@@ -1,15 +1,17 @@
 <template name="personDetail">
-	<section id="personDetail">
+	<div id="personDetail">
 		{{> personDetails}}
-		{{> filmLineCatalog films}}
-	</section>
+		<section class="listCatalogs">
+			{{> filmLineCatalog films}}
+		</section>
+	</div>
 </template>
 
 <template name="personDetails">
-	<article class="details">
+	<section class="details">
 		<ul class="list-group">
 			<li class="list-group-item">{{name}}</li>
 			<li class="list-group-item">{{height}}</li>
 		</ul>
-	</article>
+	</section>
 </template>
