@@ -5,15 +5,12 @@ FilmController = RouteController.extend({
 		var itemId = parseInt(this.params.itemId);
 		var s = Meteor.subscribe('film', itemId);
 
-		if (!Film.findOne(itemId)) {
+		if (!Films.findOne(itemId)) {
 			return s;
 		}
 	},
 	data: function() {
 		var itemId = parseInt(this.params.itemId);
-		return Film.findOne(itemId);
+		return Films.findOne(itemId);
 	}
-});
-
-Template.filmDetail.helpers({
 });
