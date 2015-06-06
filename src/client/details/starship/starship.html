@@ -1,3 +1,13 @@
 <template name="starshipDetail">
-	
+	<div id="starshipDetail" class="detail">
+		<section class="details">
+			<ul class="list-group">
+				<li class="list-group-item">{{name}}</li>
+				<li class="list-group-item">{{model}}</li>
+			</ul>
+		</section>
+		<section class="listCatalogs">
+			{{> filmLinedCatalog films }}
+		</section>
+	</div>
 </template>

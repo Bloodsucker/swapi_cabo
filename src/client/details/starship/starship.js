@@ -3,14 +3,14 @@ StarshipController = RouteController.extend({
 	template: 'starshipDetail',
 	waitOn: function() {
 		var itemId = parseInt(this.params.itemId);
-		var s = Meteor.subscribe('startship', itemId);
+		var s = Meteor.subscribe('starship', itemId);
 
-		if (!Starship.findOne(itemId)) {
+		if (!Starships.findOne(itemId)) {
 			return s;
 		}
 	},
 	data: function() {
 		var itemId = parseInt(this.params.itemId);
-		return Starship.findOne(itemId);
+		return Starships.findOne(itemId);
 	}
 });
