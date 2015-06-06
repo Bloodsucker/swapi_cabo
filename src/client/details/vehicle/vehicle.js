@@ -9,6 +9,15 @@ VehicleController = RouteController.extend({
 			return s;
 		}
 	},
+
+	action: function () {
+		var itemId = parseInt(this.params.itemId);
+
+		Session.set('breadcum_catalog', 'Vehicles');
+		Session.set('breadcum_detail', Vehicles.findOne(itemId).name);
+
+		this.render();
+	},
 	data: function() {
 		var itemId = parseInt(this.params.itemId);
 		return Vehicles.findOne(itemId);

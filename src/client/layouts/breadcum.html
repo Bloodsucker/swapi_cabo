@@ -1,0 +1,9 @@
+<template name="breadcum">
+	<span class="simplebreadcrumb">
+		{{catalog}}
+		{{#if detail}}
+			<span class="sep">&gt;</span>
+			<a href="#">{{detail}}</a>
+		{{/if}}
+	</span>
+</template>

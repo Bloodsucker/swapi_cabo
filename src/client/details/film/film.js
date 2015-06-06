@@ -9,6 +9,15 @@ FilmController = RouteController.extend({
 			return s;
 		}
 	},
+
+	action: function () {
+		var itemId = parseInt(this.params.itemId);
+
+		Session.set('breadcum_catalog', 'Films');
+		Session.set('breadcum_detail', Films.findOne(itemId).title);
+
+		this.render();
+	},
 	data: function() {
 		var itemId = parseInt(this.params.itemId);
 		return Films.findOne(itemId);
