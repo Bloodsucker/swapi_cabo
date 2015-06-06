@@ -1,14 +1,15 @@
 <template name="filmDetail">
-    <div id="filmDetail" class="detail">
-        <section class="details">
-            <ul class="list-group">
-                <li class="list-group-item">{{title}}</li>
-                <li class="list-group-item">{{height}}</li>
-            </ul>
-        </section>
-        <section class="listCatalogs">
-            {{> vehicleLinedCatalog vehicles}}
-            {{> starshipsLinedCatalog starships }}
-        </section>
-    </div>
+	<div id="filmDetail" class="detail">
+		<section class="details">
+			<ul class="list-group">
+				<li class="list-group-item">{{title}}</li>
+				<li class="list-group-item">{{height}}</li>
+			</ul>
+		</section>
+		<section class="listCatalogs">
+			{{> vehicleLinedCatalog vehicles}}
+			{{> starshipsLinedCatalog starships }}
+			{{> personLinedCatalog characters }}
+		</section>
+	</div>
 </template>
