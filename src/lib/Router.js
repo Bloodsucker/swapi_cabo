@@ -22,7 +22,7 @@ Router.route('/vehicles/:itemId', {
 	controller: 'VehicleController'
 });
 
-// Router.route('/starships/:itemId', {
-// 	name: "starship",
-// 	controller: 'StarshipController'
-// });
+Router.route('/starships/:itemId', {
+	name: "starship",
+	controller: 'StarshipController'
+});
