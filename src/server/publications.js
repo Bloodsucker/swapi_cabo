@@ -20,8 +20,6 @@ Meteor.publish('person', function (filmId) {
 
 	var url = SWAPI.baseUrl + SWAPI.people + filmId + '?' + SWAPI.format;
 
-	console.log(url);
-
 	var item = HTTP.get(url).data;
 
 	var itemId = Fetcher.getId(item.url);
@@ -34,8 +32,6 @@ Meteor.publish('film', function (filmId) {
 	var self = this;
 
 	var url = SWAPI.baseUrl + SWAPI.films + filmId + '?' + SWAPI.format;
-
-	console.log(url)
 
 	var item = HTTP.get(url).data;
 

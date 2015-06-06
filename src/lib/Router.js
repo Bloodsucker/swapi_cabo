@@ -17,10 +17,10 @@ Router.route('/films/:itemId', {
 	controller: 'FilmController'
 });
 
-// Router.route('/vehicles/:itemId', {
-// 	name: "vehicle",
-// 	controller: 'VehicleController'
-// });
+Router.route('/vehicles/:itemId', {
+	name: "vehicle",
+	controller: 'VehicleController'
+});
 
 // Router.route('/starships/:itemId', {
 // 	name: "starship",
