@@ -1,8 +1,10 @@
 <template name="filmLineCatalog">
 	<ul class="filmCatalog linedCatalog">
 		{{#if Template.subscriptionsReady}}
-			{{#each films}}
-				<li class="film item">{{title}}</li>
+			{{#each items}}
+				<li class="film item">
+					<a href="{{pathFor 'film' itemId=this._id}}">{{title}}</a>
+				</li>
 			{{/each}}
 		{{else}}
 			Loading...

@@ -2,29 +2,28 @@ Template.filmLineCatalog.onCreated(function() {
 	var self = this;
 
 	self.autorun(function() {
-		var filmUrls = Template.currentData();
+		var itemUrls = Template.currentData();
 
-		filmUrls.forEach(function(filmUrl) {
-			var filmId = Fetcher.getFilmId(filmUrl);
-			console.log(filmId);
-			self.subscribe("film", filmId);
+		itemUrls.forEach(function(itemUrl) {
+			var itemId = Fetcher.getId(itemUrl);
+			self.subscribe("film", itemId);
 		});
 	});
 });
 
 Template.filmLineCatalog.helpers({
-	films: function() {
-		var filmUrls = Template.currentData();
+	items: function() {
+		var itemUrls = Template.currentData();
 
-		var filmIds = [];
-		filmUrls.forEach(function(filmUrl) {
-			var filmId = Fetcher.getFilmId(filmUrl);
-			filmIds.push(filmId);
+		var itemIds = [];
+		itemUrls.forEach(function(itemUrl) {
+			var itemId = Fetcher.getId(itemUrl);
+			itemIds.push(itemId);
 		});
 
 		return Films.find({
 			_id: {
-				$in: filmIds
+				$in: itemIds
 			}
 		});
 	}

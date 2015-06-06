@@ -21,9 +21,13 @@ Fetcher.getPerson = function (personId, onComplete) {
 }
 
 Fetcher.getPeopleId = function (urlStr) {
-	return parseInt( urlStr.match(/\d+/)[0] );
+	return Fetcher.getId(urlStr);
 }
 
 Fetcher.getFilmId = function (urlStr) {
+	return Fetcher.getId(urlStr);
+}
+
+Fetcher.getId = function (urlStr) {
 	return parseInt( urlStr.match(/\d+/)[0] );
 }
