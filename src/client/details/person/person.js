@@ -2,7 +2,7 @@ PersonController = RouteController.extend({
 	layoutTemplate: 'detailLayout',
 	template: 'personDetail',
 	waitOn: function() {
-		var itemId = parseInt(this.params.personId);
+		var itemId = parseInt(this.params.itemId);
 
 		var s = Meteor.subscribe('person', itemId);
 
@@ -11,7 +11,7 @@ PersonController = RouteController.extend({
 		}
 	},
 	data: function() {
-		var itemId = parseInt(this.params.personId);
+		var itemId = parseInt(this.params.itemId);
 		return People.findOne(itemId);
 	}
 });

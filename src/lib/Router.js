@@ -7,7 +7,7 @@ Router.route('/people', {
 	controller: 'PeopleController'
 });
 
-Router.route('/people/:personId', {
+Router.route('/people/:itemId', {
 	name: "person",
 	controller: 'PersonController'
 });
