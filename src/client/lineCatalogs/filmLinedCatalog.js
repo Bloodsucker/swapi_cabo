@@ -1,4 +1,4 @@
-Template.filmLineCatalog.onCreated(function() {
+Template.filmLinedCatalog.onCreated(function() {
 	var self = this;
 
 	self.autorun(function() {
@@ -11,7 +11,7 @@ Template.filmLineCatalog.onCreated(function() {
 	});
 });
 
-Template.filmLineCatalog.helpers({
+Template.filmLinedCatalog.helpers({
 	items: function() {
 		var itemUrls = Template.currentData();
 

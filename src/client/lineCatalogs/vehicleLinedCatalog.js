@@ -1,4 +1,4 @@
-Template.vehicleLineCatalog.onCreated(function() {
+Template.vehicleLinedCatalog.onCreated(function() {
 	var self = this;
 
 	self.autorun(function() {
@@ -11,7 +11,7 @@ Template.vehicleLineCatalog.onCreated(function() {
 	});
 });
 
-Template.vehicleLineCatalog.helpers({
+Template.vehicleLinedCatalog.helpers({
 	items: function() {
 		var itemUrls = Template.currentData();
 
