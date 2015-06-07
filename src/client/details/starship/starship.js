@@ -1,22 +1,27 @@
 StarshipController = RouteController.extend({
 	layoutTemplate: 'detailLayout',
 	template: 'starshipDetail',
-	waitOn: function() {
-		var itemId = parseInt(this.params.itemId);
-		var s = Meteor.subscribe('starship', itemId);
-
-		if (!Starships.findOne(itemId)) {
-			return s;
-		}
-	},
-
 	action: function () {
+		var self = this;
+
 		var itemId = parseInt(this.params.itemId);
 
-		Session.set('breadcum_catalog', 'Starships');
-		Session.set('breadcum_detail', Starships.findOne(itemId).name);
+		Tracker.autorun(function (c) {
+			var item = Starships.findOne(itemId);
+			if (item) {
+				Session.set('breadcum_catalog', 'Starships');
+				Session.set('breadcum_detail', item.title);
 
-		this.render();
+				self.render();
+				c.stop();
+			} else {
+				self.render('simpleLoader');
+			}
+		});
+
+		Fetcher.getStarship(itemId, function () {
+			self.render();
+		});
 	},
 	data: function() {
 		var itemId = parseInt(this.params.itemId);

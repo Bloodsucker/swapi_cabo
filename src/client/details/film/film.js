@@ -1,22 +1,27 @@
 FilmController = RouteController.extend({
 	layoutTemplate: 'detailLayout',
 	template: 'filmDetail',
-	waitOn: function() {
-		var itemId = parseInt(this.params.itemId);
-		var s = Meteor.subscribe('film', itemId);
-
-		if (!Films.findOne(itemId)) {
-			return s;
-		}
-	},
-
 	action: function () {
+		var self = this;
+
 		var itemId = parseInt(this.params.itemId);
 
-		Session.set('breadcum_catalog', 'Films');
-		Session.set('breadcum_detail', Films.findOne(itemId).title);
+		Tracker.autorun(function (c) {
+			var item = Films.findOne(itemId);
+			if (item) {
+				Session.set('breadcum_catalog', 'Films');
+				Session.set('breadcum_detail', item.title);
 
-		this.render();
+				self.render();
+				c.stop();
+			} else {
+				self.render('simpleLoader');
+			}
+		});
+
+		Fetcher.getFilm(itemId, function () {
+			self.render();
+		});
 	},
 	data: function() {
 		var itemId = parseInt(this.params.itemId);

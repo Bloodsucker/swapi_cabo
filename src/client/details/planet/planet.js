@@ -1,22 +1,27 @@
 PlanetController = RouteController.extend({
 	layoutTemplate: 'detailLayout',
 	template: 'planetDetail',
-	waitOn: function() {
-		var itemId = parseInt(this.params.itemId);
-		var s = Meteor.subscribe('planet', itemId);
-
-		if (!Planets.findOne(itemId)) {
-			return s;
-		}
-	},
-
 	action: function () {
+		var self = this;
+
 		var itemId = parseInt(this.params.itemId);
 
-		Session.set('breadcum_catalog', 'Planets');
-		Session.set('breadcum_detail', Planets.findOne(itemId).title);
+		Tracker.autorun(function (c) {
+			var item = Planets.findOne(itemId);
+			if (item) {
+				Session.set('breadcum_catalog', 'Planets');
+				Session.set('breadcum_detail', item.title);
 
-		this.render();
+				self.render();
+				c.stop();
+			} else {
+				self.render('simpleLoader');
+			}
+		});
+
+		Fetcher.getPlanet(itemId, function () {
+			self.render();
+		});
 	},
 	data: function() {
 		var itemId = parseInt(this.params.itemId);

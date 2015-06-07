@@ -1,6 +1,6 @@
 <template name="starshipsLinedCatalog">
 	<ul class="starshipsLinedCatalog linedCatalog">
-		{{#if Template.subscriptionsReady}}
+		{{#if loaded}}
 			{{#each items}}
 				<li class="starships item">
 					<a href="{{pathFor 'starship' itemId=this._id}}">{{name}}</a>

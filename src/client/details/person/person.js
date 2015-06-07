@@ -1,32 +1,30 @@
 PersonController = RouteController.extend({
 	layoutTemplate: 'detailLayout',
 	template: 'personDetail',
-	waitOn: function() {
-		var itemId = parseInt(this.params.itemId);
-
-		var s = Meteor.subscribe('person', itemId);
-
-		if (!People.findOne(itemId)) {
-			return s;
-		}
-	},
-
 	action: function () {
+		var self = this;
+
 		var itemId = parseInt(this.params.itemId);
 
-		Session.set('breadcum_catalog', 'People');
-		Session.set('breadcum_detail', People.findOne(itemId).name);
+		Tracker.autorun(function (c) {
+			var item = People.findOne(itemId);
+			if (item) {
+				Session.set('breadcum_catalog', 'People');
+				Session.set('breadcum_detail', item.name);
 
-		this.render();
+				self.render();
+				c.stop();
+			} else {
+				self.render('simpleLoader');
+			}
+		});
+
+		Fetcher.getPerson(itemId, function () {
+			self.render();
+		});
 	},
 	data: function() {
 		var itemId = parseInt(this.params.itemId);
 		return People.findOne(itemId);
-	}
-});
-
-Template.personDetail.helpers({
-	debug: function () {
-		console.log(this);
 	}
 });

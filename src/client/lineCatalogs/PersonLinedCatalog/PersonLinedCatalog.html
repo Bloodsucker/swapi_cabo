@@ -1,6 +1,6 @@
 <template name="personLinedCatalog">
 	<ul class="personLinedCatalog linedCatalog">
-		{{#if Template.subscriptionsReady}}
+		{{#if loaded}}
 			{{#each items}}
 				<li class="film item">
 					<a href="{{pathFor 'person' itemId=this._id}}">{{name}}</a>

@@ -6,12 +6,15 @@
 
 	min-height: 150px;
 
+	overflow-x: auto;
+
 	.item {
 		display: flex;
 		list-style: none;
 
 		height: 150px;
 		width: 150px;
+		flex: 0 0 150px;
 
 		border: 1px solid gray;
 		margin-right: 10px;

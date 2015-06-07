@@ -1,17 +1,27 @@
 Template.planetLinedCatalog.onCreated(function() {
 	var self = this;
 
+	Session.set("planetLinedCatalog_loaded", false);
+
 	self.autorun(function() {
 		var itemUrls = Template.currentData();
 
 		itemUrls.forEach(function(itemUrl) {
 			var itemId = Fetcher.getId(itemUrl);
-			self.subscribe("planet", itemId);
+			Fetcher.getPlanet(itemId, function () {
+				Session.set("planetLinedCatalog_loaded", true);
+			});
 		});
+
+		if (!itemUrls.length)
+			Session.set("planetLinedCatalog_loaded", true);
 	});
 });
 
 Template.planetLinedCatalog.helpers({
+	loaded: function () {
+		return Session.equals("planetLinedCatalog_loaded", true);
+	},
 	items: function() {
 		var itemUrls = Template.currentData();
 

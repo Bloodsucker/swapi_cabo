@@ -11,6 +11,7 @@
 		}
 		.listCatalogs {
 			flex: 1 1 auto;
+			max-width: calc(100% - 300px);
 		}
 	}
 }
