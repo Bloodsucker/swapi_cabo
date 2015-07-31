@@ -6,10 +6,14 @@ Template.vehicleLinedCatalog.onRendered(function() {
 	self.autorun(function() {
 		var itemUrls = Template.currentData();
 
+		var itemsToLoad = 0;
 		itemUrls.forEach(function(itemUrl) {
 			var itemId = Fetcher.getId(itemUrl);
 			Fetcher.getVehicle(itemId, function () {
 				Session.set("vehicleLinedCatalog_loaded", true);
+			
+				itemsToLoad++;
+				if (itemsToLoad === itemUrls.length) Session.set("vehicleLinedCatalog_AllLoaded", true);
 			});
 		});
 
@@ -36,5 +40,20 @@ Template.vehicleLinedCatalog.helpers({
 				$in: itemIds
 			}
 		});
+	}
+});
+
+Template.vehicleLinedCatalog.onCreated(function () {
+	ug.startTimer('vehicleLinedCatalogTimer');
+	this.autorun(function() {
+		if (Session.get('vehicleLinedCatalog_AllLoaded')) {
+			ug.endTimer('vehicleLinedCatalogTimer');
+		}
+	});
+});
+
+Template.vehicleLinedCatalog.events({
+	'click .item a': function () {
+		ug.event('click', 'vehicleLinedCatalog_anchor', this._id);
 	}
 });

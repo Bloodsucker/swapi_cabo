@@ -31,3 +31,7 @@ Router.route('/planets/:itemId', {
 	name: "planet",
 	controller: 'PlanetController'
 });
+
+Router.onAfterAction(function () {
+	ug.transition();
+});

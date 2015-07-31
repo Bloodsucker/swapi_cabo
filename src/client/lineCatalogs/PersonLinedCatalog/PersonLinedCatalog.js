@@ -6,10 +6,14 @@ Template.personLinedCatalog.onCreated(function() {
 	self.autorun(function() {
 		var itemUrls = Template.currentData();
 
+		var itemsToLoad = 0;
 		itemUrls.forEach(function(itemUrl) {
 			var itemId = Fetcher.getId(itemUrl);
 			Fetcher.getPerson(itemId, function () {
 				Session.set("personLinedCatalog_loaded", true);
+
+				itemsToLoad++;
+				if (itemsToLoad === itemUrls.length) Session.set("personLinedCatalog_AllLoaded", true);
 			});
 		});
 
@@ -36,5 +40,20 @@ Template.personLinedCatalog.helpers({
 				$in: itemIds
 			}
 		});
+	}
+});
+
+Template.personLinedCatalog.onCreated(function () {
+	ug.startTimer('personLinedCatalogTimer');
+	this.autorun(function() {
+		if (Session.get('personLinedCatalog_AllLoaded')) {
+			ug.endTimer('personLinedCatalogTimer');
+		}
+	});
+});
+
+Template.personLinedCatalog.events({
+	'click .item a': function () {
+		ug.event('click', 'personLinedCatalog_anchor', this._id);
 	}
 });

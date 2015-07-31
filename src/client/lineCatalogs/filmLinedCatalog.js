@@ -6,10 +6,14 @@ Template.filmLinedCatalog.onCreated(function() {
 	self.autorun(function() {
 		var itemUrls = Template.currentData();
 
+		var itemsToLoad = 0;
 		itemUrls.forEach(function(itemUrl) {
 			var itemId = Fetcher.getId(itemUrl);
 			Fetcher.getFilm(itemId, function () {
 				Session.set("filmLinedCatalog_loaded", true);
+
+				itemsToLoad++;
+				if (itemsToLoad === itemUrls.length) Session.set("filmLinedCatalog_AllLoaded", true);
 			});
 		});
 
@@ -36,5 +40,20 @@ Template.filmLinedCatalog.helpers({
 				$in: itemIds
 			}
 		});
+	}
+});
+
+Template.filmLinedCatalog.onCreated(function () {
+	ug.startTimer('filmLinedCatalogTimer');
+	this.autorun(function() {
+		if (Session.get('filmLinedCatalog_AllLoaded')) {
+			ug.endTimer('filmLinedCatalogTimer');
+		}
+	});
+});
+
+Template.filmLinedCatalog.events({
+	'click .item a': function () {
+		ug.event('click', 'filmLinedCatalog_anchor', this._id);
 	}
 });

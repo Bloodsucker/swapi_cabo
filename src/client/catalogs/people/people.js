@@ -20,3 +20,9 @@ PeopleController = RouteController.extend({
 		return People.find();
 	}
 });
+
+Template.peopleCatalog.events({
+	'click .person a': function (e) {
+		ug.event('click', 'catalogPeopleAnchors', this._id);
+	}
+});
